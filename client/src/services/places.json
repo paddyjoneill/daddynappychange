@@ -1,7 +1,16 @@
 { 
-    "name": "National Museum of Scotland",
-    "lat": 55.9469809,
-    "lng": -3.1905524,
-    "placeId" : "ChIJIeS60YTHh0gRw7W-8gMnzIg"
-
+    "places":[
+        {
+            "name": "National Museum of Scotland",
+            "lat": 55.9469809,
+            "lng": -3.1905524,
+            "placeId" : "ChIJIeS60YTHh0gRw7W-8gMnzIg"
+        },
+        {
+            "name": "National Gallery of Scotland",
+            "lat": 55.950902,
+            "lng": -3.1956862,
+            "placeId": "ChIJ68bm6kjGh0gRkyF0XlT5Rww"
+        }
+    ]
 }

@@ -1,31 +1,51 @@
 import React, { useState } from "react";
+
+import NavBar from './NavBar'
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
   getLatLng
 } from "react-places-autocomplete";
 
-export default function AddLocation() {
+export default function AddLocation({setPlaces, places, history}) {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
     lat: null,
     lng: null
   });
   const [placeId, setPlaceId] = useState("");
+  const [placeName, setPlaceName] = useState("");
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     const place = results[0].place_id
+    const name = results[0].name
     console.log(results);
     
     setAddress(value);
     setCoordinates(latLng);
     setPlaceId(place);
+    setPlaceName(name);
+    console.log(name)
   };
+
+  const handleSubmit = () => {
+    let newPlace = {
+        name: placeName,
+        lat: coordinates.lat,
+        lng: coordinates.lng,
+        placeId: placeId
+    }
+    setPlaces([...places, newPlace])
+    console.log("places", places)
+    
+  }
 
   return (
     <div>
+        <NavBar history={history}></NavBar>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -54,6 +74,9 @@ export default function AddLocation() {
                 );
               })}
             </div>
+
+            <button onClick={handleSubmit} >Submit</button>
+
           </div>
         )}
       </PlacesAutocomplete>

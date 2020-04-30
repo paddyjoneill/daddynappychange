@@ -2,16 +2,16 @@ import React from 'react';
 
 import '../App.css'
 
-const NavBar = () => {
+const NavBar = ({history}) => {
 
 
     return(
         <div className="navbar">
             <h2 className="title">Daddy Nappy Change Finder</h2>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/login" >Login/Sign-up</a></li>
-                <li><a href="/addlocation" >Add Location</a></li>
+                <li onClick={() => history.push("/")}>Home</li>
+                <li onClick={() => history.push("/login")}>Login/Sign-up</li>
+                <li onClick={() => history.push("/addlocation")}>Add Location</li>
             </ul>
         </div>
     )
