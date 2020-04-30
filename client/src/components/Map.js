@@ -1,15 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import {GoogleMap, withScriptjs, withGoogleMap} from 'react-google-maps';
+import * as PlacesData from '../services/places.json'
+
+import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
 const Map = () => {
 
+    const [selectedPlace, setSelectedPlace] = useState(null);
+
 const MapObject = () => {
+    // console.log(PlacesData.name)
+    // console.log(PlacesData.lat);
+    // console.log(PlacesData.lng);
+    // console.log(PlacesData.placeId)
+    
+    
     return(
         <GoogleMap 
         defaultZoom={15} 
-        defaultCenter={{lat:55.953251, lng:-3.188267}}
-        />
+        defaultCenter={{lat:55.9469809, lng:-3.1905524}}
+        >
+            <Marker
+          key={PlacesData.placeId}
+          position={{
+            lat: PlacesData.lat,
+            lng: PlacesData.lng
+          }}
+          onClick={() => {
+            setSelectedPlace(PlacesData);
+          }}
+      
+        >
+              {selectedPlace && (
+        <InfoWindow
+          onCloseClick={() => {
+            setSelectedPlace(null);
+          }}
+          position={{
+            lat: selectedPlace.lat,
+            lng: selectedPlace.lng
+          }}
+        >
+          <div>
+            <h2>{selectedPlace.name}</h2>
+            <p>{selectedPlace.placeId}</p>
+          </div>
+        </InfoWindow>
+      )}
+        </Marker>
+        </GoogleMap>
+
     )
 }
 
