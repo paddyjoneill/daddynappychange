@@ -19,12 +19,20 @@ venuesData = [
 
 @app.route('/')
 def index():
-    return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p>'
+    return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p><p><a href="https://daddynappychange.herokuapp.com/api/venues">Link to venues json</a></p>'
 
-@app.route('/venues')
+@app.route('/api/venues')
 def venues():
     return jsonify(venuesData)
 
+@app.route('/api/venues/<id>')
+def getVenue(id):
+    print(id)
+    for venue in venuesData:
+        print(venue['placeId'])
+        if venue['placeId'] == id:
+            return jsonify(venue)
+    return {}
 
 if __name__ == '__main__':
     app.run()
