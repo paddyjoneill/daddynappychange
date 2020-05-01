@@ -4,7 +4,6 @@ import NavBar from './NavBar'
 
 import PlacesAutocomplete, {
   geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng
 } from "react-places-autocomplete";
 

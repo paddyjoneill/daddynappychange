@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import NavBar from './NavBar'
 
-import * as PlacesData from '../services/places.json'
+// import * as PlacesData from '../services/places.json'
 
 import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
@@ -65,7 +65,7 @@ return (
     <div>
         <NavBar history={history}></NavBar>
     
-    <div style={{width: '100vw', height: '100vh'}}>
+    <div style={{width: '100vw', height: '85vh'}}>
         <WrappedMap 
             googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
             loadingElement={<div style={{ height: `100%` }} />}
