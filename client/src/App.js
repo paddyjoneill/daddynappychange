@@ -6,12 +6,16 @@ import Map from './components/Map';
 import Login from './components/Login';
 import AddLocation from './components/AddLocation';
 
+import VenueService from './services/VenueService'
+
 import * as PlacesData from './services/places.json'
 import './App.css';
 
 function App() {
 
   const [places, setPlaces] = useState(PlacesData.places)
+
+  console.log(VenueService.getVenues())
 
   return (
     <div className="App">
