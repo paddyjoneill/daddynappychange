@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import NavBar from './NavBar'
+
+import VenueService from '../services/VenueService'
 
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -15,6 +17,7 @@ export default function AddLocation({setPlaces, places, history}) {
   });
   const [placeId, setPlaceId] = useState("");
   const [placeName, setPlaceName] = useState("");
+  
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);

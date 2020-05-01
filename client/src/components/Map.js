@@ -11,8 +11,6 @@ const Map = ({ places, setPlaces, history }) => {
     const [selectedPlace, setSelectedPlace] = useState(null);
 
 const MapObject = () => {
-
-    console.log(places)
     
     return(
         <GoogleMap 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 // import NavBar from './components/NavBar';
@@ -8,14 +8,21 @@ import AddLocation from './components/AddLocation';
 
 import VenueService from './services/VenueService'
 
-import * as PlacesData from './services/places.json'
+// import * as PlacesData from './services/places.json'
 import './App.css';
 
 function App() {
 
-  const [places, setPlaces] = useState(PlacesData.places)
+  const [places, setPlaces] = useState([])
 
-  console.log(VenueService.getVenues())
+  let venues = VenueService.getVenues()
+  
+
+  // useEffect(() => {
+  //   console.log(venues)
+  // }, [])
+  
+
 
   return (
     <div className="App">
