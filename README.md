@@ -12,6 +12,6 @@ This app is to help with the problem that when Dad's are out with their babies a
 
 The main purpose of this app is for me to consilidate my programming skills and learn some new ones. I will be using React for the front-end which I have used before and I'm familiar with. This should also allow me later on to use the code and create a mobile app using React Native.
 
-Since graduating CodeClan I have been learning Python and intend to use this to power the back-end of the site utilising the Flask framework. I also plan to deploy the backend to AWS and learn about cloud platforms, I also plan to use AWS DynamoDB for persistance of data.
+Since graduating CodeClan I have been learning Python and intend to use this to power the back-end of the site utilising the Flask framework. I also plan to deploy the backend to AWS and learn about cloud platforms as well as learning AWS DynamoDB and using it for persistance of data.
 
 
