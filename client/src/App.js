@@ -15,12 +15,12 @@ function App() {
 
   const [places, setPlaces] = useState([])
 
-  let venues = VenueService.getVenues()
   
 
-  // useEffect(() => {
-  //   console.log(venues)
-  // }, [])
+  useEffect(() => {
+    VenueService.getVenues()
+    .then( data => setPlaces(data))
+  }, [])
   
 
 
