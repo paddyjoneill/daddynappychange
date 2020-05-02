@@ -40,7 +40,8 @@ export default function AddLocation({setPlaces, places, history}) {
         lng: coordinates.lng,
         placeId: placeId
     }
-    setPlaces([...places, newPlace])
+    // setPlaces([...places, newPlace])
+    VenueService.postVenue(newPlace)
     console.log("places", places)
     
   }

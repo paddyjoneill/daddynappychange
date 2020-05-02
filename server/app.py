@@ -23,8 +23,12 @@ venuesData = [
 def index():
     return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p><p><a href="https://daddynappychange.herokuapp.com/api/venues">Link to venues json</a></p>'
 
-@app.route('/api/venues')
+@app.route('/api/venues', methods=['POST', 'GET'])
 def venues():
+    if request.method == 'POST':
+        newVenue = request.get_json()
+        venuesData.append(newVenue)
+        return jsonify(venuesData)
     return jsonify(venuesData)
 
 @app.route('/api/venues/<id>')
