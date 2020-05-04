@@ -24,13 +24,14 @@ export default function AddLocation({setPlaces, places, history}) {
     const latLng = await getLatLng(results[0]);
     const place = results[0].place_id
     const name = results[0].name
-    console.log(results);
+    console.log('results: ',results);
+    console.log('value: ', value.split(',')[0])
     
     setAddress(value);
     setCoordinates(latLng);
     setPlaceId(place);
-    setPlaceName(name);
-    console.log(name)
+    setPlaceName(value.split(',')[0]);
+    
   };
 
   const handleSubmit = () => {
