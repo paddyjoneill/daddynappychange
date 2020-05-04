@@ -33,8 +33,12 @@ def venues():
         return jsonify(venuesData)
     return jsonify(venuesData)
 
-@app.route('/db/venues')
+@app.route('/db/venues', methods=['POST', 'GET'])
 def db_venues():
+    if request.method == 'POST':
+        newVenue = request.get_json()
+        db.add_venue(newVenue)
+        return jsonify(db.get_all_venues())
     return jsonify(db.get_all_venues())
 
 @app.route('/api/venues/<id>')
