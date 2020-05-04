@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import db
 
 app = Flask(__name__)
 CORS(app)
@@ -28,8 +29,13 @@ def venues():
     if request.method == 'POST':
         newVenue = request.get_json()
         venuesData.append(newVenue)
+        db.add_venue(newVenue)
         return jsonify(venuesData)
     return jsonify(venuesData)
+
+@app.route('/db/venues')
+def db_venues():
+    return jsonify(db.get_all_venues())
 
 @app.route('/api/venues/<id>')
 def getVenue(id):
