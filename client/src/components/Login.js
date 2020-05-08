@@ -36,7 +36,9 @@ return(
             ></input>
             <br></br>
             <button onClick={handleLogin}>Login</button>
-        
+    </div>
+    <div>
+        <h3 onClick={() => history.push("/signup")}>Not Registered? Sign up!</h3>
     </div>
     </div>
 )
