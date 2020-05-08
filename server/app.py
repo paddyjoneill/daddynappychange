@@ -28,6 +28,9 @@ def getVenue(id):
 def login():
     login_details = request.get_json()
     user_details = db.get_user_by_username(login_details['username'])
+    # if no user found return that
+
+    # have db method return user object?
     user = User(user_details['username'], user_details['email'])
     user.set_hashed_password(user_details['hashed_password'])
     can_log_in = user.verify_password(login_details['password'])
@@ -36,6 +39,8 @@ def login():
 @app.route('/api/signup', methods=['POST'])
 def signup():
     new_user = request.get_json()
+    # find out if user name or email exists
+    # and don't add if so
     user = User(new_user['username'], new_user['email'])
     user.hash_password(new_user['password'])
     db.add_user(user)
