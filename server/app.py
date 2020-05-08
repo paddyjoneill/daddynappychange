@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
+
 import db
 
 app = Flask(__name__)
@@ -21,11 +23,9 @@ def db_venues():
 def getVenue(id):
     print(id)
     return jsonify(db.get_venue_by_placeid(id))
-    # for venue in venuesData:
-    #     print(venue['placeId'])
-    #     if venue['placeId'] == id:
-    #         return jsonify(venue)
-    # return {}
+
+@app.route('/api/login', methods=['POST'])
+def login():
 
 if __name__ == '__main__':
     app.run()
