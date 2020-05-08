@@ -4,7 +4,9 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 // import NavBar from './components/NavBar';
 import Map from './components/Map';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import AddLocation from './components/AddLocation';
+
 
 import VenueService from './services/VenueService'
 
@@ -38,9 +40,17 @@ function App() {
           />}
         />
           
-          <Route exact path="/login">
-            <Login></Login>
-          </Route>
+          <Route exact path="/login"
+          render={(props) => <Login {...props}
+          />}
+          />
+
+          <Route exact path="/signup"
+          render={(props) => <Signup {...props}
+          />}
+          />
+            
+          
           
           <Route exact path="/addlocation"
             render={(props) => <AddLocation {...props}
