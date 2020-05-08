@@ -12,11 +12,14 @@ class User:
     def hash_password(self, password):
         self.hashed_password = pwd_context.hash(password)
 
+    def set_hashed_password(self, hashed_password):
+        self.hashed_password = hashed_password
+
     def verify_password(self, password):
         return pwd_context.verify(password, self.hashed_password)
 
 
-user = User('paddy', 'paddyjoneill@hotmail.com')
-user.hash_password('testing')
-print(user.verify_password('testing'))
-print(user.verify_password('password'))
+# user = User('paddy', 'paddyjoneill@hotmail.com')
+# user.hash_password('testing')
+# print(user.verify_password('testing'))
+# print(user.verify_password('password'))
