@@ -13,6 +13,9 @@ class User(db.Model):
     def hash_password(self, password):
         self.hashed_password = generate_password_hash(password)
 
+    def verify_password(self, password):
+        return check_password_hash(self.hashed_password, password)
+
     def add_user(new_user):
         username = new_user.get('username')
         email = new_user.get('email')
@@ -25,6 +28,15 @@ class User(db.Model):
         db.session.commit()
 
         return user
+
+    @staticmethod
+    def verify_user_by_username(username, password):
+        user = User.query.filter_by(username=username).first()
+        print(user.id)
+        print(user.verify_password(password))
+        if not user or not user.verify_password(password):
+            return False
+        return True
 
 
 class Venue(db.Model):

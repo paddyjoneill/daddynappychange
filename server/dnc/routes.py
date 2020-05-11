@@ -1,5 +1,8 @@
 from flask import Flask, jsonify, request, make_response, abort
 
+from flask_httpauth import HTTPBasicAuth
+auth = HTTPBasicAuth()
+
 from dnc import app
 from dnc import db
 
@@ -30,6 +33,15 @@ def signup():
     new_user = request.get_json()
     user = models.User.add_user(new_user)
     return jsonify({"id": user.id})
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
+    print(username)
+    print(password)
+    can_log_in = models.User.verify_user_by_username(username, password)
+    return jsonify({"loggedin": can_log_in})
 
 
 @app.errorhandler(404)
