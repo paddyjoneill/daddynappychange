@@ -13,8 +13,8 @@ def index():
 def db_venues():
     if request.method == 'POST':
         newVenue = request.get_json()
-        db.add_venue(newVenue)
-        return jsonify(db.get_all_venues())
+        models.Venue.add_venue(newVenue)
+        return jsonify(models.Venue.get_all_venues())
     return jsonify(models.Venue.get_all_venues())
 
 @app.route('/api/venues/<id>')
@@ -23,7 +23,14 @@ def getVenue(id):
     print(venue)
     if venue == None:
         abort(404)
-    return jsonify(venue    )
+    return jsonify(venue)
+
+@app.route('/api/signup', methods=['POST'])
+def signup():
+    new_user = request.get_json()
+    user = models.User.add_user(new_user)
+    return jsonify({"id": user.id})
+
 
 @app.errorhandler(404)
 def not_found(error):

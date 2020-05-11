@@ -13,6 +13,20 @@ class User(db.Model):
     def hash_password(self, password):
         self.hashed_password = generate_password_hash(password)
 
+    def add_user(new_user):
+        username = new_user.get('username')
+        email = new_user.get('email')
+        password = new_user.get('password')
+        
+        user = User(username=username, email=email)
+        user.hash_password(password)
+
+        db.session.add(user)
+        db.session.commit()
+
+        return user
+
+
 class Venue(db.Model):
     __tablename__ = 'venues'
     placeId = db.Column(db.String(45), primary_key=True)
@@ -34,4 +48,11 @@ class Venue(db.Model):
             venue = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
             return venue
         return None
+
+    def add_venue(new_venue):
+        venue = Venue(placeId=new_venue['placeId'], name=new_venue['name'], lat=new_venue['lat'], lng=new_venue['lng'])
+        # check venue doesn't exist
+        db.session.add(venue)
+        db.session.commit()
+        return {"message": "added to db"}
 
