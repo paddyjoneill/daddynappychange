@@ -150,3 +150,23 @@ def get_user_by_username(username):
         connection.commit()
     finally:
         connection.close()
+
+def get_user_by_username_or_email(username, email):
+    connection = pymysql.connect(host=os.environ['DB_URL'],
+                             user=os.environ['DB_USER'],
+                             password=os.environ['DB_PASSWORD'],
+                             db='innodb',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+        # Read all records
+            sql = "SELECT * FROM `users` WHERE `username` = %s OR `email` = %s"
+            cursor.execute(sql, (username, email))
+            result = cursor.fetchone()
+            print(result)
+            return result
+        connection.commit()
+    finally:
+        connection.close()
