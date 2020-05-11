@@ -38,12 +38,35 @@ def signup():
 def login():
     username = request.json.get('username')
     password = request.json.get('password')
-    print(username)
-    print(password)
     can_log_in = models.User.verify_user_by_username(username, password)
     return jsonify({"loggedin": can_log_in})
+
+@app.route('/api/token', methods=['POST'])
+@auth.login_required
+def get_token():
+    username = request.authorization.username
+    password = request.authorization.password
+    user = models.User.query.filter_by(username=username).first()
+    token = user.generate_auth_token()
+    return token
+
+@app.route('/api/test', methods=['POST'])
+@auth.login_required
+def test_token():
+    return "The token worked!!!"
 
 
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+@auth.verify_password
+def verify_password(username_or_token, password):
+    print(username_or_token)
+    print(password)
+    # try and get verified with auth token
+    user = models.User.verify_auth_token(username_or_token)
+    # if not token tries to verify by username and password
+    if not user:
+        return models.User.verify_user_by_username(username_or_token, password)
+    return user
