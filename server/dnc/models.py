@@ -30,6 +30,8 @@ class Venue(db.Model):
 
     def get_venue_by_placeid(id):
         result = Venue.query.filter_by(placeId=id).first()
-        venue = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
-        return venue
+        if not result == None:
+            venue = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
+            return venue
+        return None
 

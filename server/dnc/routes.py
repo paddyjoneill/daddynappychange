@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response, abort
 
 from dnc import app
 from dnc import db
@@ -20,10 +20,10 @@ def db_venues():
 @app.route('/api/venues/<id>')
 def getVenue(id):
     venue = models.Venue.get_venue_by_placeid(id)
-
+    print(venue)
     if venue == None:
         abort(404)
-    return jsonify()
+    return jsonify(venue    )
 
 @app.errorhandler(404)
 def not_found(error):
