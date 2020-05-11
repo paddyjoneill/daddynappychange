@@ -38,8 +38,14 @@ def signup():
 def login():
     username = request.json.get('username')
     password = request.json.get('password')
+    # error for user doesn't exist
+    # error for wrong password
     can_log_in = models.User.verify_user_by_username(username, password)
-    return jsonify({"loggedin": can_log_in})
+    if can_log_in:
+        user = models.User.query.filter_by(username=username).first()
+        token = user.generate_auth_token()
+        # convert bytes to string
+    return jsonify({"jwt": str(token) })
 
 @app.route('/api/token', methods=['POST'])
 @auth.login_required
