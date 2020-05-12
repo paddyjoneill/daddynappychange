@@ -45,7 +45,8 @@ def login():
         user = models.User.query.filter_by(username=username).first()
         token = user.generate_auth_token()
         # convert bytes to string
-    return jsonify({"jwt": str(token) })
+        # token.decode('utf-8')
+    return jsonify({"jwt": token.decode('utf-8')  })
 
 @app.route('/api/token', methods=['POST'])
 @auth.login_required
@@ -59,7 +60,7 @@ def get_token():
 @app.route('/api/test', methods=['POST'])
 @auth.login_required
 def test_token():
-    return "The token worked!!!"
+    return jsonify({"message": "The token worked!!!"})
 
 
 @app.errorhandler(404)

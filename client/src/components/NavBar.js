@@ -12,6 +12,7 @@ const NavBar = ({history}) => {
                 <li onClick={() => history.push("/")}>Home</li>
                 <li onClick={() => history.push("/login")}>Login</li>
                 <li onClick={() => history.push("/addlocation")}>Add Location</li>
+                <li onClick={() => history.push("/testlogin")}>Test Login</li>
             </ul>
         </div>
     )

@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 
 import UserService from '../services/UserService'
 
-const Login = ({history}) => {
+const Login = ({ history, setJwt }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -14,6 +14,8 @@ const Login = ({history}) => {
             password: password
         }
         UserService.login(userObject)
+        .then( data => setJwt(data['jwt']) )
+        .then(history.push('/'))
 
     }
 

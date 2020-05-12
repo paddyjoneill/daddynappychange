@@ -1,7 +1,9 @@
 let base64 = require('base-64');
 
-const baseURL = 'https://daddynappychange.herokuapp.com/api/'
-// const baseURL = 'http://localhost:5000/api/'
+
+  const baseURL = 'https://daddynappychange.herokuapp.com/api/'
+
+
 
 export default {
 
@@ -17,7 +19,6 @@ export default {
             }
           })
             .then(res => res.json())
-            .then(data => console.log(data))
     },
 
     postUser(newUser){
@@ -29,6 +30,20 @@ export default {
             }
           })
             .then(res => res.json())
+    },
+
+    testLogin(jwt){
+      console.log(jwt)
+      return fetch(baseURL + 'test', {
+        method: "POST",
+        body: JSON.stringify({jwt: jwt}),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + base64.encode(jwt + ":dummy")
+        }
+      })
+        .then(res => res.json())
+
     }
 
 

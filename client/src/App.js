@@ -7,15 +7,17 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import AddLocation from './components/AddLocation';
 
+import TestLogin from './components/TestLogin';
+
 
 import VenueService from './services/VenueService'
 
-// import * as PlacesData from './services/places.json'
 import './App.css';
 
 function App() {
 
-  const [places, setPlaces] = useState([])
+  const [ places, setPlaces ] = useState([]);
+  const [ jwt, setJwt ] = useState("");
 
   
 
@@ -42,6 +44,7 @@ function App() {
           
           <Route exact path="/login"
           render={(props) => <Login {...props}
+          setJwt={setJwt}
           />}
           />
 
@@ -56,6 +59,12 @@ function App() {
             render={(props) => <AddLocation {...props}
             setPlaces={setPlaces}
             places={places}
+            />}
+          />
+
+          <Route exact path="/testlogin" 
+            render={(props) => <TestLogin {...props}
+            jwt={jwt}
             />}
           />
 
