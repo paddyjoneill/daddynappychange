@@ -31,6 +31,8 @@ def getVenue(id):
 @app.route('/api/signup', methods=['POST'])
 def signup():
     new_user = request.get_json()
+    # check username and email aren't already in use
+    # return error if so
     user = models.User.add_user(new_user)
     return jsonify({"id": user.id})
 
@@ -44,8 +46,6 @@ def login():
     if can_log_in:
         user = models.User.query.filter_by(username=username).first()
         token = user.generate_auth_token()
-        # convert bytes to string
-        # token.decode('utf-8')
     return jsonify({"jwt": token.decode('utf-8')  })
 
 @app.route('/api/token', methods=['POST'])
@@ -60,7 +60,7 @@ def get_token():
 @app.route('/api/test', methods=['POST'])
 @auth.login_required
 def test_token():
-    return jsonify({"message": "The token worked!!!"})
+    return jsonify({"message": "You are verified, the token worked!!!"})
 
 
 @app.errorhandler(404)
