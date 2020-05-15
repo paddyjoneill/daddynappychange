@@ -16,3 +16,5 @@ db = SQLAlchemy(app)
 
 from dnc import models
 from dnc import routes
+
+# db.create_all() # uncomment to add new table

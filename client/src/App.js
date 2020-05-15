@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import AddLocation from './components/AddLocation';
 import VenueDetails from './components/VenueDetails';
+import AddReview from './components/AddReview';
 
 import TestLogin from './components/TestLogin';
 
@@ -67,6 +68,12 @@ function App() {
             lastSelectedPlace={lastSelectedPlace}
             />}
           />
+
+          <Route exact path="/addreview"
+            render={(props) => <AddReview {...props} 
+            lastSelectedPlace={lastSelectedPlace}
+            />}
+          />  
 
           <Route exact path="/testlogin" 
             render={(props) => <TestLogin {...props}

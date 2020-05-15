@@ -86,11 +86,12 @@ class Venue(db.Model):
         db.session.commit()
         return {"message": "added to db"}
 
-class Review(db.model):
+class Review(db.Model):
     __tablename__ = 'reviews'
     id = db.Column(db.Integer, primary_key=True)
-    role_id = db.Column(db.String(45), db.ForeignKey('venues.placeId'))
+    venue_id = db.Column(db.String(45), db.ForeignKey('venues.placeId'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    title = db.Column(db.String(100))
     text = db.Column(db.Text)
     image_link = db.Column(db.String(50))
     rating = db.Column(db.Integer, index=True)
@@ -103,7 +104,11 @@ class Review(db.model):
         return {}
 
     def add_review(review):
-        return {}
+        user = User.query.first()
+        newReview = Review(venue_id=review['placeId'], title=review['title'], text=review['text'], user_id=user.id)
+        db.session.add(newReview)
+        db.session.commit()
+        return newReview
 
     def delete_review_by_reviewid(reviewId):
         return {}

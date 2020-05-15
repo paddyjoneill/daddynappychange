@@ -12,6 +12,9 @@ from dnc import models
 def index():
     return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p><p><a href="https://daddynappychange.herokuapp.com/api/venues">Link to venues json</a></p>'
 
+
+# venue routes
+
 @app.route('/api/venues', methods=['POST', 'GET'])
 def db_venues():
     if request.method == 'POST':
@@ -27,6 +30,24 @@ def getVenue(id):
     if venue == None:
         abort(404)
     return jsonify(venue)
+
+# review routes
+
+@app.route('/api/reviews', methods=['POST'])
+def addReview():
+    newReviewDetails = request.get_json()
+    newReview = models.Review.add_review(newReviewDetails)
+    return {"id": newReview.id}
+
+
+@app.route('/api/reviews/<id>')
+def getReview(id):
+    review = models.Review.get_review_by_reviewid(id)
+    if review == None:
+        abort(404)
+    return jsonify(review)
+
+# user signup and authentication routes
 
 @app.route('/api/signup', methods=['POST'])
 def signup():

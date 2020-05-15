@@ -28,6 +28,8 @@ return(
         <div>
             <h2>Venue Details</h2>
             <Details></Details>
+            <br></br><br></br>
+            <h2 onClick={() => history.push('/addreview')}>Add Review</h2>
         </div>
     </div>
 )
