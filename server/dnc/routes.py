@@ -23,6 +23,15 @@ def db_venues():
         return jsonify(models.Venue.get_all_venues())
     return jsonify(models.Venue.get_all_venues())
 
+@app.route('/api/venues/<string:id>/reviews')
+def getVenueReviews(id):
+    reviews = models.Review.get_reviews_by_placeid(id)
+    json_reviews = []
+    for review in reviews:
+        json_review = { "text":review.text, "title":review.title}
+        json_reviews.append(json_review)
+    return jsonify(json_reviews)
+
 @app.route('/api/venues/<id>')
 def getVenue(id):
     venue = models.Venue.get_venue_by_placeid(id)
@@ -30,6 +39,8 @@ def getVenue(id):
     if venue == None:
         abort(404)
     return jsonify(venue)
+
+
 
 # review routes
 

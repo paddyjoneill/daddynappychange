@@ -97,8 +97,8 @@ class Review(db.Model):
     rating = db.Column(db.Integer, index=True)
 
     def get_reviews_by_placeid(placeId):
-        
-        return []
+        reviews = Review.query.filter_by(venue_id=placeId).all()
+        return reviews
 
     def get_review_by_reviewid(reviewId):
         return {}
