@@ -5,6 +5,7 @@ export default {
         return fetch(baseURL)
         .then(response => response.json())
     },
+
     postVenue(newVenue) {
         return fetch(baseURL, {
           method: "POST",
@@ -14,5 +15,10 @@ export default {
           }
         })
           .then(res => res.json())
-      }
+      },
+    
+    getVenue(placeId) {
+      
+    }
+
 }

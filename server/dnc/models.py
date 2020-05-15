@@ -86,3 +86,24 @@ class Venue(db.Model):
         db.session.commit()
         return {"message": "added to db"}
 
+class Review(db.model):
+    __tablename__ = 'reviews'
+    id = db.Column(db.Integer, primary_key=True)
+    role_id = db.Column(db.String(45), db.ForeignKey('venues.placeId'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    text = db.Column(db.Text)
+    image_link = db.Column(db.String(50))
+    rating = db.Column(db.Integer, index=True)
+
+    def get_reviews_by_placeid(placeId):
+        
+        return []
+
+    def get_review_by_reviewid(reviewId):
+        return {}
+
+    def add_review(review):
+        return {}
+
+    def delete_review_by_reviewid(reviewId):
+        return {}

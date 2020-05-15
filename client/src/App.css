@@ -16,6 +16,10 @@
   text-align: left;
 }
 
+.blacktextlink {
+  color: black;
+}
+
 ul {
   text-align: right;
   list-style-type: none;

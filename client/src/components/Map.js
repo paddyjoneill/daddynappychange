@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import NavBar from './NavBar'
 
-// import * as PlacesData from '../services/places.json'
 
 import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
-const Map = ({ places, setPlaces, history }) => {
+const Map = ({ places, lastSelectedPlace, setLastSelectedPlace, history }) => {
 
     const [selectedPlace, setSelectedPlace] = useState(null);
 
@@ -27,6 +26,7 @@ const MapObject = () => {
             }}
             onClick={() => {
               setSelectedPlace(place);
+              setLastSelectedPlace(place)
             }}
 
         
@@ -48,6 +48,7 @@ const MapObject = () => {
           <div>
             <h2>{selectedPlace.name}</h2>
             <p>{selectedPlace.placeId}</p>
+            <p onClick={() => history.push("/venue")}>Click for more info!</p>
           </div>
         </InfoWindow>
       )}
