@@ -26,9 +26,10 @@ def db_venues():
 @app.route('/api/venues/<string:id>/reviews')
 def getVenueReviews(id):
     reviews = models.Review.get_reviews_by_placeid(id)
+    # move this to models section?
     json_reviews = []
     for review in reviews:
-        json_review = { "text":review.text, "title":review.title}
+        json_review = { "text":review.text, "title":review.title }
         json_reviews.append(json_review)
     return jsonify(json_reviews)
 
@@ -56,7 +57,9 @@ def getReview(id):
     review = models.Review.get_review_by_reviewid(id)
     if review == None:
         abort(404)
-    return jsonify(review)
+    # move this to models section
+    json_review = { "text":review.text, "title":review.title }
+    return jsonify(json_review)
 
 # user signup and authentication routes
 

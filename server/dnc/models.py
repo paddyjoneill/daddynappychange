@@ -101,7 +101,8 @@ class Review(db.Model):
         return reviews
 
     def get_review_by_reviewid(reviewId):
-        return {}
+        review = Review.query.filter_by(id=reviewId).first()
+        return review
 
     def add_review(review):
         user = User.query.first()

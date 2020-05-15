@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import NavBar from './NavBar';
+import ReviewService from '../services/ReviewService';
 
 const VenueDetails = ({ history, lastSelectedPlace }) => {
 
-    const [ venueDetails, setVenueDetails] = useState(null)
+    // const [ venueDetails, setVenueDetails] = useState(null)
+    const [ reviews, setReviews ] = useState(null)
+
+    useEffect(() => {
+        ReviewService.getReviewsByVenue(lastSelectedPlace.placeId)
+        .then( response => setReviews(response) )
+    }, [])
 
     const Details = () => {
         if (lastSelectedPlace !== null) {
@@ -21,6 +28,17 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
         }
     }
 
+    const Reviews = () => {
+        if (reviews !== null){
+            return reviews.map((review, index) => {
+                return <div><h3>{review.title}</h3><p>{review.text}</p></div>
+            })
+        } else {
+            return null
+        }
+    } 
+    
+
 
 return(
     <div>
@@ -30,7 +48,9 @@ return(
             <Details></Details>
             <br></br><br></br>
             <h2 onClick={() => history.push('/addreview')}>Add Review</h2>
+            <br></br><br></br>
         </div>
+        <Reviews />
     </div>
 )
 
