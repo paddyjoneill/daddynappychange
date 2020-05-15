@@ -4,16 +4,20 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 // import NavBar from './components/NavBar';
 import Map from './components/Map';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import AddLocation from './components/AddLocation';
+
+import TestLogin from './components/TestLogin';
+
 
 import VenueService from './services/VenueService'
 
-// import * as PlacesData from './services/places.json'
 import './App.css';
 
 function App() {
 
-  const [places, setPlaces] = useState([])
+  const [ places, setPlaces ] = useState([]);
+  const [ jwt, setJwt ] = useState("");
 
   
 
@@ -38,14 +42,29 @@ function App() {
           />}
         />
           
-          <Route exact path="/login">
-            <Login></Login>
-          </Route>
+          <Route exact path="/login"
+          render={(props) => <Login {...props}
+          setJwt={setJwt}
+          />}
+          />
+
+          <Route exact path="/signup"
+          render={(props) => <Signup {...props}
+          />}
+          />
+            
+          
           
           <Route exact path="/addlocation"
             render={(props) => <AddLocation {...props}
             setPlaces={setPlaces}
             places={places}
+            />}
+          />
+
+          <Route exact path="/testlogin" 
+            render={(props) => <TestLogin {...props}
+            jwt={jwt}
             />}
           />
 
