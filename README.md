@@ -16,6 +16,8 @@ Since graduating CodeClan I have been learning Python and intend to use this to 
 
 ### Blogs
 [Planning](https://medium.com/@paddyjoneill_76057/planning-d7d9f8071f8b)
+
 [Back to Front or Front to Back](https://medium.com/@paddyjoneill_76057/back-to-front-or-front-to-back-d16772804fd6)
+
 [Persistence](https://medium.com/@paddyjoneill_76057/persistence-4d83d0debc5b)
 
