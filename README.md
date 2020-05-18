@@ -14,4 +14,8 @@ The main purpose of this app is for me to consilidate my programming skills and 
 
 Since graduating CodeClan I have been learning Python and intend to use this to power the back-end of the site utilising the Flask framework. I also plan to deploy the backend to AWS and learn about cloud platforms as well as learning AWS RDS and using it for persistence of data.
 
+### Blogs
+Planning https://medium.com/@paddyjoneill_76057/planning-d7d9f8071f8b
+Back to Front or Front to Back https://medium.com/@paddyjoneill_76057/back-to-front-or-front-to-back-d16772804fd6
+Persistence https://medium.com/@paddyjoneill_76057/persistence-4d83d0debc5b
 
