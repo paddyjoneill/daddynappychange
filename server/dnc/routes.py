@@ -58,7 +58,7 @@ def getReview(id):
     if review == None:
         abort(404)
     # move this to models section
-    json_review = { "text":review.text, "title":review.title }
+    json_review = review.to_json()
     return jsonify(json_review)
 
 # user signup and authentication routes

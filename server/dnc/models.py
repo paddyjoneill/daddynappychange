@@ -58,6 +58,7 @@ class User(db.Model):
 
     def to_json():
             # write code to make object into json
+            return none
 
 
 class Venue(db.Model):
@@ -71,14 +72,17 @@ class Venue(db.Model):
         results = Venue.query.all()
         venues = []
         for result in results:
-            venueObject = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
-            venues.append(venueObject)
+            # venueObject = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
+            # venues.append(venueObject)
+            venue_json = result.to_json()
+            venues.append(venue_json)
         return venues
 
     def get_venue_by_placeid(id):
         result = Venue.query.filter_by(placeId=id).first()
         if not result == None:
-            venue = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
+            # venue = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
+            venue = result.to_json()
             return venue
         return None
 
@@ -88,6 +92,12 @@ class Venue(db.Model):
         db.session.add(venue)
         db.session.commit()
         return {"message": "added to db"}
+
+    def to_json(self):
+        venue = { "placeId": self.placeId, "name": self.name, "lat": self.lat, "lng": self.lng}
+        return venue
+
+
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -116,3 +126,7 @@ class Review(db.Model):
 
     def delete_review_by_reviewid(reviewId):
         return {}
+
+    def to_json(self):
+        json_review = { "text": self.text, "title": self.title }
+        return json_review
