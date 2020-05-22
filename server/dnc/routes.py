@@ -77,12 +77,15 @@ def login():
     username = request.json.get('username')
     password = request.json.get('password')
     # error for user doesn't exist
+    user = models.User.query.filter_by(username=username).first()
+    if user == None:
+        return {"message": "username doesn't exist"}
     # error for wrong password
     can_log_in = models.User.verify_user_by_username(username, password)
     if can_log_in:
-        user = models.User.query.filter_by(username=username).first()
         token = user.generate_auth_token()
-    return {"jwt": token.decode('utf-8')  }
+        return {"jwt": token.decode('utf-8')  }
+    return {"message": "wrong password"}
 
 @app.route('/api/token', methods=['POST'])
 @auth.login_required
