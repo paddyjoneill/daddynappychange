@@ -39,7 +39,7 @@ def get_venue(id):
     print(venue)
     if venue == None:
         abort(404)
-    return jsonify(venue)
+    return venue
 
 
 
@@ -62,10 +62,15 @@ def get_review(id):
 @app.route('/api/signup', methods=['POST'])
 def signup():
     new_user = request.get_json()
-    # check username and email aren't already in use
-    # return error if so
+    print(new_user)
+    user_exists = models.User.query.filter_by(username=new_user['username']).first()
+    if user_exists != None:
+        return {"message": "username already in use"}
+    user_exists = models.User.query.filter_by(email=new_user['email']).first()
+    if user_exists != None:
+        return {"message": "email already in use"}
     user = models.User.add_user(new_user)
-    return jsonify({"id": user.id})
+    return {"id": user.id}
 
 @app.route('/api/login', methods=['POST'])
 def login():
@@ -77,7 +82,7 @@ def login():
     if can_log_in:
         user = models.User.query.filter_by(username=username).first()
         token = user.generate_auth_token()
-    return jsonify({"jwt": token.decode('utf-8')  })
+    return {"jwt": token.decode('utf-8')  }
 
 @app.route('/api/token', methods=['POST'])
 @auth.login_required
@@ -91,12 +96,12 @@ def get_token():
 @app.route('/api/test', methods=['POST'])
 @auth.login_required
 def test_token():
-    return jsonify({"message": "You are verified, the token worked!!!"})
+    return {"message": "You are verified, the token worked!!!"}
 
 
 @app.errorhandler(404)
 def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return make_response({'error': 'Not found'}, 404)
 
 @auth.verify_password
 def verify_password(username_or_token, password):

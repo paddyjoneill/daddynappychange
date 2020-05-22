@@ -20,6 +20,7 @@ function App() {
   const [ places, setPlaces ] = useState([]);
   const [ lastSelectedPlace, setLastSelectedPlace] = useState({placeId:0});
   const [ jwt, setJwt ] = useState("");
+  // const [ selectedReview, setSelectedReview] = useState(null);
 
 
   useEffect(() => {
