@@ -56,9 +56,9 @@ class User(db.Model):
         user = User.query.get(data['id'])
         return user
 
-    def to_json():
+    def to_json(self):
             # write code to make object into json
-            return none
+            return None
 
 
 class Venue(db.Model):
@@ -72,8 +72,6 @@ class Venue(db.Model):
         results = Venue.query.all()
         venues = []
         for result in results:
-            # venueObject = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
-            # venues.append(venueObject)
             venue_json = result.to_json()
             venues.append(venue_json)
         return venues
@@ -81,14 +79,12 @@ class Venue(db.Model):
     def get_venue_by_placeid(id):
         result = Venue.query.filter_by(placeId=id).first()
         if not result == None:
-            # venue = { "placeId": result.placeId, "name": result.name, "lat": result.lat, "lng": result.lng}
             venue = result.to_json()
             return venue
         return None
 
     def add_venue(new_venue):
         venue = Venue(placeId=new_venue['placeId'], name=new_venue['name'], lat=new_venue['lat'], lng=new_venue['lng'])
-        # check venue doesn't exist
         db.session.add(venue)
         db.session.commit()
         return {"message": "added to db"}
@@ -109,22 +105,26 @@ class Review(db.Model):
     image_link = db.Column(db.String(50))
     rating = db.Column(db.Integer, index=True)
 
-    def get_reviews_by_placeid(placeId):
-        reviews = Review.query.filter_by(venue_id=placeId).all()
+    def get_reviews_by_placeid(place_id):
+        reviews = Review.query.filter_by(venue_id=place_id).all()
         return reviews
 
-    def get_review_by_reviewid(reviewId):
-        review = Review.query.filter_by(id=reviewId).first()
-        return review
+    def get_review_by_reviewid(review_id):
+        review = Review.query.filter_by(id=review_id).first()
+        if review == None:
+            abort(404)
+        review_json = review.to_json()
+        return review_json
 
     def add_review(review):
         user = User.query.first()
-        newReview = Review(venue_id=review['placeId'], title=review['title'], text=review['text'], user_id=user.id)
-        db.session.add(newReview)
+        new_review = Review(venue_id=review['placeId'], title=review['title'], text=review['text'], user_id=user.id)
+        db.session.add(new_review)
         db.session.commit()
-        return newReview
+        return new_review
 
-    def delete_review_by_reviewid(reviewId):
+    def delete_review_by_reviewid(review_id):
+        review = Review.query.filter_by(id=review_id)
         return {}
 
     def to_json(self):

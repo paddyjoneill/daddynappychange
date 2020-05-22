@@ -12,19 +12,23 @@ from dnc import models
 def index():
     return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p><p><a href="https://daddynappychange.herokuapp.com/api/venues">Link to venues json</a></p>'
 
+#try serving front end from static folder
+@app.route('/frontend')
+def frontend():
+    return
 
 # venue routes
 
 @app.route('/api/venues', methods=['POST', 'GET'])
 def db_venues():
     if request.method == 'POST':
-        newVenue = request.get_json()
-        models.Venue.add_venue(newVenue)
+        new_venue = request.get_json()
+        models.Venue.add_venue(new_venue)
         return jsonify(models.Venue.get_all_venues())
     return jsonify(models.Venue.get_all_venues())
 
 @app.route('/api/venues/<string:id>/reviews')
-def getVenueReviews(id):
+def get_venue_reviews(id):
     reviews = models.Review.get_reviews_by_placeid(id)
     # move this to models section?
     json_reviews = []
@@ -34,7 +38,7 @@ def getVenueReviews(id):
     return jsonify(json_reviews)
 
 @app.route('/api/venues/<id>')
-def getVenue(id):
+def get_venue(id):
     venue = models.Venue.get_venue_by_placeid(id)
     print(venue)
     if venue == None:
@@ -46,20 +50,16 @@ def getVenue(id):
 # review routes
 
 @app.route('/api/reviews', methods=['POST'])
-def addReview():
-    newReviewDetails = request.get_json()
-    newReview = models.Review.add_review(newReviewDetails)
-    return {"id": newReview.id}
+def add_review():
+    new_review_details = request.get_json()
+    new_review = models.Review.add_review(new_review_details)
+    return {"id": new_review.id}
 
 
 @app.route('/api/reviews/<id>')
-def getReview(id):
+def get_review(id):
     review = models.Review.get_review_by_reviewid(id)
-    if review == None:
-        abort(404)
-    # move this to models section
-    json_review = review.to_json()
-    return jsonify(json_review)
+    return review
 
 # user signup and authentication routes
 
@@ -104,11 +104,7 @@ def not_found(error):
 
 @auth.verify_password
 def verify_password(username_or_token, password):
-    print(username_or_token)
-    print(password)
-    # try and get verified with auth token
     user = models.User.verify_auth_token(username_or_token)
-    # if not token tries to verify by username and password
     if not user:
         return models.User.verify_user_by_username(username_or_token, password)
     return user
