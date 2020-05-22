@@ -48,5 +48,6 @@ a {
   border: solid 1px ;
   border-radius: 4px;
   z-index: 10;
-  width: 55px;
+  width: 60px;
+  height: 60px;
 }

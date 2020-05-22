@@ -26,6 +26,7 @@ yarn-error.log*
 .netlify
 
 #python
+.flaskenv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

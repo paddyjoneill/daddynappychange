@@ -35,7 +35,7 @@ const Map = ({places, setLastSelectedPlace, history}) => {
     const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
-    })
+    }, [])
     const panTo = useCallback(({lat, lng}) => {
         mapRef.current.panTo({ lat, lng})
         mapRef.current.setZoom(15)

@@ -10,7 +10,7 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
     useEffect(() => {
         ReviewService.getReviewsByVenue(lastSelectedPlace.placeId)
         .then( res => setReviews(res) )
-    }, [])
+    })
 
     const Details = () => {
         if (lastSelectedPlace !== null) {
