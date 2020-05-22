@@ -1,4 +1,5 @@
 from dnc import app, db
+from flask import abort
 from flask_httpauth import HTTPBasicAuth
 
 from itsdangerous import (TimedJSONWebSignatureSerializer
