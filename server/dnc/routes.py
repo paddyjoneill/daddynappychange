@@ -25,23 +25,14 @@ def db_venues():
 
 @app.route('/api/venues/<string:id>/reviews')
 def get_venue_reviews(id):
-    reviews = models.Review.get_reviews_by_placeid(id)
-    # move this to models section?
-    json_reviews = []
-    for review in reviews:
-        json_review = { "text":review.text, "title":review.title }
-        json_reviews.append(json_review)
-    return jsonify(json_reviews)
+    return jsonify(models.Review.get_venue_reviews(id))
 
 @app.route('/api/venues/<id>')
 def get_venue(id):
     venue = models.Venue.get_venue_by_placeid(id)
-    print(venue)
     if venue == None:
         abort(404)
     return venue
-
-
 
 # review routes
 
@@ -55,37 +46,22 @@ def add_review():
 @app.route('/api/reviews/<id>')
 def get_review(id):
     review = models.Review.get_review_by_reviewid(id)
-    return review
+    if review == None:
+        abort(404)
+    return review 
 
 # user signup and authentication routes
 
 @app.route('/api/signup', methods=['POST'])
 def signup():
     new_user = request.get_json()
-    print(new_user)
-    user_exists = models.User.query.filter_by(username=new_user['username']).first()
-    if user_exists != None:
-        return {"message": "username already in use"}
-    user_exists = models.User.query.filter_by(email=new_user['email']).first()
-    if user_exists != None:
-        return {"message": "email already in use"}
-    user = models.User.add_user(new_user)
-    return {"id": user.id}
+    return models.User.signup(new_user)
 
 @app.route('/api/login', methods=['POST'])
 def login():
     username = request.json.get('username')
     password = request.json.get('password')
-    # error for user doesn't exist
-    user = models.User.query.filter_by(username=username).first()
-    if user == None:
-        return {"message": "username doesn't exist"}
-    # error for wrong password
-    can_log_in = models.User.verify_user_by_username(username, password)
-    if can_log_in:
-        token = user.generate_auth_token()
-        return {"jwt": token.decode('utf-8')  }
-    return {"message": "wrong password"}
+    return models.User.login(username, password)
 
 @app.route('/api/token', methods=['POST'])
 @auth.login_required

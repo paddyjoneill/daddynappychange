@@ -55,6 +55,29 @@ class User(db.Model):
             return None
         user = User.query.get(data['id'])
         return user
+    
+    @staticmethod
+    def signup(new_user):
+        user_exists = User.query.filter_by(username=new_user['username']).first()
+        if user_exists != None:
+            return {"message": "username already in use"}
+        user_exists = User.query.filter_by(email=new_user['email']).first()
+        if user_exists != None:
+            return {"message": "email already in use"}
+        user = User.add_user(new_user)
+        return {"id": user.id}
+
+    @staticmethod
+    def login(username, password):
+        user = User.query.filter_by(username=username).first()
+        if user == None:
+            return {"message": "username doesn't exist"}
+        # error for wrong password
+        can_log_in = User.verify_user_by_username(username, password)
+        if can_log_in:
+            token = user.generate_auth_token()
+            return {"jwt": token.decode('utf-8')  }
+        return {"message": "wrong password"}
 
     def to_json(self):
             # write code to make object into json
@@ -105,9 +128,8 @@ class Review(db.Model):
     image_link = db.Column(db.String(50))
     rating = db.Column(db.Integer, index=True)
 
-    def get_reviews_by_placeid(place_id):
-        reviews = Review.query.filter_by(venue_id=place_id).all()
-        return reviews
+    def get_reviews_by_placeid(id):
+        return Review.query.filter_by(venue_id=id).all()
 
     def get_review_by_reviewid(review_id):
         review = Review.query.filter_by(id=review_id).first()
@@ -130,3 +152,13 @@ class Review(db.Model):
     def to_json(self):
         json_review = { "text": self.text, "title": self.title }
         return json_review
+
+    @staticmethod
+    def get_venue_reviews(id):
+        reviews = Review.get_reviews_by_placeid(id)
+        # move this to models section?
+        json_reviews = []
+        for review in reviews:
+            json_review = review.to_json()
+            json_reviews.append(json_review)
+        return json_reviews
