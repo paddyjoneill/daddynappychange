@@ -156,7 +156,6 @@ class Review(db.Model):
     @staticmethod
     def get_venue_reviews(id):
         reviews = Review.get_reviews_by_placeid(id)
-        # move this to models section?
         json_reviews = []
         for review in reviews:
             json_review = review.to_json()
