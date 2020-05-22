@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Map from './components/Map';
+import UpdatedMap from './components/UpdatedMap';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AddLocation from './components/AddLocation';
@@ -37,7 +38,7 @@ function App() {
           
           <Route 
             exact path="/" 
-            render={(props) => <Map {...props}
+            render={(props) => <UpdatedMap {...props}
             places={places} 
             setLastSelectedPlace={setLastSelectedPlace}
             lastSelectedPlace={lastSelectedPlace}

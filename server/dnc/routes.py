@@ -12,10 +12,6 @@ from dnc import models
 def index():
     return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p><p><a href="https://daddynappychange.herokuapp.com/api/venues">Link to venues json</a></p>'
 
-#try serving front end from static folder
-@app.route('/frontend')
-def frontend():
-    return
 
 # venue routes
 
