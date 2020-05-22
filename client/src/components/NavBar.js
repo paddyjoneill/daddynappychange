@@ -8,11 +8,12 @@ const NavBar = ({history}) => {
     return(
         <div className="navbar">
             <h2 className="title">Daddy Nappy Change Finder</h2>
+            <p>work in progress...</p>
             <ul>
                 <li onClick={() => history.push("/")}>Home</li>
                 <li onClick={() => history.push("/login")}>Login</li>
                 <li onClick={() => history.push("/addlocation")}>Add Location</li>
-                <li onClick={() => history.push("/testlogin")}>Test Login</li>
+                {/* <li onClick={() => history.push("/testlogin")}>Test Login</li> */}
             </ul>
         </div>
     )

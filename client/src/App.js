@@ -21,12 +21,11 @@ function App() {
   const [ lastSelectedPlace, setLastSelectedPlace] = useState(null);
   const [ jwt, setJwt ] = useState("");
 
-  
 
   useEffect(() => {
     VenueService.getVenues()
     .then( data => setPlaces(data))
-  }, [])
+  }, [] )
   
 
 

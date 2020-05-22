@@ -56,6 +56,9 @@ class User(db.Model):
         user = User.query.get(data['id'])
         return user
 
+    def to_json():
+            # write code to make object into json
+
 
 class Venue(db.Model):
     __tablename__ = 'venues'
