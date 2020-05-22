@@ -15,6 +15,7 @@ const AddReview = ({history, lastSelectedPlace}) => {
             placeId: lastSelectedPlace.placeId
         }
         ReviewService.addReview(reviewObject)
+        .then( res => history.push('/venue'))
     }
 
 return(

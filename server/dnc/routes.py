@@ -67,7 +67,6 @@ def login():
 @auth.login_required
 def get_token():
     username = request.authorization.username
-    password = request.authorization.password
     user = models.User.query.filter_by(username=username).first()
     token = user.generate_auth_token()
     return token
