@@ -4,7 +4,7 @@ const LocateButton = ({panTo}) => {
 
 
     return(
-        <button onClick={() => {
+        <button className="locate" onClick={() => {
             navigator.geolocation.getCurrentPosition((position) => {
                 panTo({
                     lat: position.coords.latitude,

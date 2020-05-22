@@ -38,3 +38,14 @@ a {
   color: ghostwhite;
   font-weight: 600;
 }
+
+.locate {
+  position: absolute;
+  top: 16vh;
+  right: 10px;
+  background: ghostwhite;
+  border: solid 1px ;
+  border-radius: 4px;
+  z-index: 10;
+  width: 55px;
+}
