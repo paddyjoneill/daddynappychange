@@ -9,7 +9,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from "react-places-autocomplete";
 
-export default function AddLocation({setPlaces, places, history}) {
+export default function AddLocation({setPlaces, setLastSelectedPlace, places, history}) {
   const [address, setAddress] = React.useState("");
   const [coordinates, setCoordinates] = React.useState({
     lat: null,
@@ -23,9 +23,6 @@ export default function AddLocation({setPlaces, places, history}) {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     const place = results[0].place_id
-    // const name = results[0].name
-    console.log('results: ',results);
-    console.log('value: ', value.split(',')[0])
     
     setAddress(value);
     setCoordinates(latLng);
@@ -43,7 +40,10 @@ export default function AddLocation({setPlaces, places, history}) {
     }
     setPlaces([...places, newPlace])
     VenueService.postVenue(newPlace)
-    console.log("places", places)
+    .then( res => {
+      setLastSelectedPlace(newPlace);
+      history.push("/venue")
+    } )
     
   }
 

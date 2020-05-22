@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Map from './components/Map';
-import UpdatedMap from './components/UpdatedMap';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import AddLocation from './components/AddLocation';
@@ -19,7 +18,7 @@ import './App.css';
 function App() {
 
   const [ places, setPlaces ] = useState([]);
-  const [ lastSelectedPlace, setLastSelectedPlace] = useState(null);
+  const [ lastSelectedPlace, setLastSelectedPlace] = useState({placeId:0});
   const [ jwt, setJwt ] = useState("");
 
 
@@ -38,7 +37,7 @@ function App() {
           
           <Route 
             exact path="/" 
-            render={(props) => <UpdatedMap {...props}
+            render={(props) => <Map {...props}
             places={places} 
             setLastSelectedPlace={setLastSelectedPlace}
             lastSelectedPlace={lastSelectedPlace}
@@ -59,6 +58,7 @@ function App() {
           <Route exact path="/addlocation"
             render={(props) => <AddLocation {...props}
             setPlaces={setPlaces}
+            setLastSelectedPlace={setLastSelectedPlace}
             places={places}
             />}
           />

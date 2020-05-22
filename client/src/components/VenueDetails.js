@@ -5,12 +5,11 @@ import ReviewService from '../services/ReviewService';
 
 const VenueDetails = ({ history, lastSelectedPlace }) => {
 
-    // const [ venueDetails, setVenueDetails] = useState(null)
     const [ reviews, setReviews ] = useState(null)
 
     useEffect(() => {
         ReviewService.getReviewsByVenue(lastSelectedPlace.placeId)
-        .then( response => setReviews(response) )
+        .then( res => setReviews(res) )
     }, [])
 
     const Details = () => {

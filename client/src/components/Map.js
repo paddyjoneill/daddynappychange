@@ -1,78 +1,85 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback, useRef} from 'react';
+import {
+    GoogleMap,
+    useLoadScript,
+    Marker,
+    InfoWindow
+} from '@react-google-maps/api';
 
-import NavBar from './NavBar'
+import NavBar from './NavBar';
+import LocateButton from './LocateButton';
+import mapStyles from '../services/MapStyles';
 
-
-import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
-
-const Map = ({ places, lastSelectedPlace, setLastSelectedPlace, history }) => {
-
-    const [selectedPlace, setSelectedPlace] = useState(null);
-
-const MapObject = () => {
-    
-    return(
-        <GoogleMap 
-        defaultZoom={15} 
-        defaultCenter={{lat:55.9469809, lng:-3.1905524}}
-        >
-
-        { places.map( place => (
-            <Marker
-            key={place.placeId}
-            position={{
-              lat: place.lat,
-              lng: place.lng
-            }}
-            onClick={() => {
-              setSelectedPlace(place);
-              setLastSelectedPlace(place)
-            }}
-
-        
-          />
-        
-        ))}
-
-        
-              {selectedPlace && (
-        <InfoWindow
-          onCloseClick={() => {
-            setSelectedPlace(null);
-          }}
-          position={{
-            lat: selectedPlace.lat,
-            lng: selectedPlace.lng
-          }}
-        >
-          <div>
-            <h2>{selectedPlace.name}</h2>
-            <p>{selectedPlace.placeId}</p>
-            <p onClick={() => history.push("/venue")}>Click for more info!</p>
-          </div>
-        </InfoWindow>
-      )}
-        
-        </GoogleMap>
-
-    )
+const libraries = ['places'];
+const mapContainerStyle = {
+    width: '100vw',
+    height: '85vh'
+}
+const center = {
+    lat:55.9469809, 
+    lng:-3.1905524
+}
+const options = {
+    styles: mapStyles,
+    disableDefaultUI: true,
+    zoomControl: true
 }
 
-const WrappedMap = withScriptjs(withGoogleMap(MapObject))
+const Map = ({places, setLastSelectedPlace, history}) => {
 
-return (
-    <div>
-        <NavBar history={history}></NavBar>
+    const [selectedPlace, setSelectedPlace] = useState(null);
+    const{ isLoaded, loadError} = useLoadScript({googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+    libraries })
     
-    <div style={{width: '100vw', height: '85vh'}}>
-        <WrappedMap 
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `100%` }} />}
-            mapElement={<div style={{ height: `100%` }} />}/>
-    </div>
-    </div>
-)
+
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map;
+    })
+    const panTo = useCallback(({lat, lng}) => {
+        mapRef.current.panTo({ lat, lng})
+        mapRef.current.setZoom(15)
+    }, []);
+
+    if (loadError) return "Error loading maps"
+    if (!isLoaded ) return "Loading Maps"
+
+    
+
+
+    return (
+        <div>
+            <NavBar history={history}></NavBar>
+            <LocateButton panTo={panTo}></LocateButton>
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={15}
+                center={center}
+                options={options}
+                onLoad={onMapLoad}
+            >
+                {places.map( place => <Marker 
+                key={place.placeId} 
+                position={{lat:place.lat, lng:place.lng}}
+                onClick={() => {
+                    setSelectedPlace(place)
+                    setLastSelectedPlace(place)
+                }}
+                />)}
+                {selectedPlace ? (
+                <InfoWindow 
+                position={{lat:selectedPlace.lat, lng:selectedPlace.lng}}
+                onCloseClick={() => setSelectedPlace(null)}
+                >
+                    <div>
+                        <h3>{selectedPlace.name}</h3>
+                        <p>{selectedPlace.placeId}</p>
+                        <p onClick={() => history.push("/venue")}>Click for more info!</p>
+                    </div>
+                </InfoWindow>) : null}
+            </GoogleMap>
+        </div>
+    )
 
 
 }
