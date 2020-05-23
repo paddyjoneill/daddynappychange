@@ -14,7 +14,7 @@ The main purpose of this app is for me to consilidate my programming skills and 
 
 Since graduating CodeClan I have been learning Python and intend to use this to power the back-end of the site utilising the Flask framework. I also plan to deploy the backend to AWS and learn about cloud platforms as well as learning AWS RDS and using it for persistence of data.
 
-Other things I have planned are using Celery and Redis for asynchronous tasks and saving user uploaded images to an s3 bucket.
+Other things I have planned are using Celery and Redis for asynchronous tasks,  saving user uploaded images to an s3 bucket and looking into using GraphQL.
 
 ### Blogs
 
