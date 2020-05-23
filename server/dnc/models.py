@@ -151,7 +151,7 @@ class Review(db.Model):
         return {}
 
     def to_json(self):
-        json_review = { "text": self.text, "title": self.title }
+        json_review = { "id": self.id, "text": self.text, "title": self.title }
         return json_review
 
     @staticmethod

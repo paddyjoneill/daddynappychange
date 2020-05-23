@@ -6,11 +6,16 @@ import ReviewService from '../services/ReviewService';
 const VenueDetails = ({ history, lastSelectedPlace }) => {
 
     const [ reviews, setReviews ] = useState(null)
+    // const [selectedReview, setSelectedReview] = useState(null)
 
     useEffect(() => {
         ReviewService.getReviewsByVenue(lastSelectedPlace.placeId)
-        .then( res => setReviews(res) )
-    })
+        .then( res => {
+            setReviews(res)
+            console.log(res)
+        } )
+        
+    }, [lastSelectedPlace])
 
     const Details = () => {
         if (lastSelectedPlace !== null) {
