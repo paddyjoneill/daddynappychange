@@ -8,6 +8,8 @@ from dnc import db
 
 from dnc import models
 
+from dnc import mail
+
 @app.route('/')
 def index():
     return '<h1>Daddy Nappy Change<h2><p>Welcome to the back-end...</p><p><a href="https://daddynappychange.herokuapp.com/api/venues">Link to venues json</a></p>'
@@ -55,6 +57,7 @@ def get_review(id):
 @app.route('/api/signup', methods=['POST'])
 def signup():
     new_user = request.get_json()
+    mail.send_signup_mail(new_user['email'])
     return models.User.signup(new_user)
 
 @app.route('/api/login', methods=['POST'])
