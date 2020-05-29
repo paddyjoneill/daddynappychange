@@ -57,7 +57,7 @@ def get_review(id):
 @app.route('/api/signup', methods=['POST'])
 def signup():
     new_user = request.get_json()
-    mail.send_signup_mail(new_user['email'])
+    mail.send_signup_mail.delay(new_user['email'])
     return models.User.signup(new_user)
 
 @app.route('/api/login', methods=['POST'])
