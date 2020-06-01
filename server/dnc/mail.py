@@ -7,9 +7,9 @@ from dnc import celery
 mail = Mail(app)
 
 @celery.task()
-def send_signup_mail( recipient ):
+def send_signup_mail( recipient_email ):
     # msg = Message('welcome', sender='daddynappychange@gmail.com', recipients=['paddyjoneill@hotmail.com'])
-    msg = Message('welcome', sender='daddynappychange@gmail.com', recipients=[recipient['email']])
+    msg = Message('welcome', sender='daddynappychange@gmail.com', recipients=[recipient_email])
   
     msg.body = "welcome to daddy nappy change"
     with app.app_context():
