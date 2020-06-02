@@ -26,3 +26,5 @@ I have been writing blogs to document my progress and thought process:
 
 [Persistence](https://medium.com/@paddyjoneill_76057/persistence-4d83d0debc5b)
 
+[Object Relational Mapping](https://medium.com/@patrickjamesoneill/object-relational-mapping-89702764f5e2)
+
