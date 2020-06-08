@@ -20,11 +20,9 @@ def get_all_venues():
 
     try:
         with connection.cursor() as cursor:
-        # Read all records
             sql = "SELECT * FROM `venues`"
             cursor.execute(sql)
             result = cursor.fetchall()
-            # print(result)
             return result
         connection.commit()
     finally:
@@ -41,11 +39,9 @@ def get_venue_by_placeid(placeId):
 
     try:
         with connection.cursor() as cursor:
-        # Read all records
             sql = "SELECT * FROM `venues` WHERE `placeId` = %s"
             cursor.execute(sql, (placeId))
             result = cursor.fetchone()
-            # print(result)
             return result
         connection.commit()
     finally:

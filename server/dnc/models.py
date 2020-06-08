@@ -1,4 +1,5 @@
 from dnc import app, db
+from dnc import mail
 from flask import abort
 from flask_httpauth import HTTPBasicAuth
 
@@ -19,20 +20,6 @@ class User(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.hashed_password, password)
-
-    @staticmethod
-    def add_user(new_user):
-        username = new_user.get('username')
-        email = new_user.get('email')
-        password = new_user.get('password')
-        
-        user = User(username=username, email=email)
-        user.hash_password(password)
-
-        db.session.add(user)
-        db.session.commit()
-
-        return user
 
     @staticmethod
     def verify_user_by_username(username, password):
@@ -66,6 +53,7 @@ class User(db.Model):
         if user_exists != None:
             return {"message": "email already in use"}
         user = User.add_user(new_user)
+        mail.send_signup_mail.delay(new_user['email'])
         return {"id": user.id}
 
     @staticmethod
