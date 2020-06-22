@@ -57,6 +57,20 @@ class User(db.Model):
         return {"id": user.id}
 
     @staticmethod
+    def add_user(new_user):
+        username = new_user.get('username')
+        email = new_user.get('email')
+        password = new_user.get('password')
+        
+        user = User(username=username, email=email)
+        user.hash_password(password)
+
+        db.session.add(user)
+        db.session.commit()
+
+        return user
+
+    @staticmethod
     def login(username, password):
         user = User.query.filter_by(username=username).first()
         if user == None:
