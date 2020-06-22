@@ -1,6 +1,5 @@
 from flask_mail import Mail, Message
 
-
 from dnc import app
 from dnc import celery
 
