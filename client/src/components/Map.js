@@ -73,7 +73,7 @@ const Map = ({places, setLastSelectedPlace, history}) => {
                 >
                     <div>
                         <h3>{selectedPlace.name}</h3>
-                        <p>{selectedPlace.placeId}</p>
+                        {/* <p>{selectedPlace.placeId}</p> */}
                         <p onClick={() => history.push("/venue")}>Click for more info!</p>
                     </div>
                 </InfoWindow>) : null}

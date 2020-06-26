@@ -41,10 +41,12 @@
   margin: 20px;
   margin-top: 4px;
   padding:20px;
-  height: 75vh;
+  height: 70vh;
   /* width: 400px; */
   border-radius: 10px;
-  background-color: ghostwhite;
+  /* background-color: ghostwhite;
+  opacity: 0.7; */
+  background-color: rgba(248,248,255,0.7);
 
 }
 
@@ -70,9 +72,11 @@
 }
 
 .login-form{
-  height: 75vh;
+  height: 70vh;
   /* width: 400px; */
-  background-color: ghostwhite;
+  /* background-color: ghostwhite;
+  opacity: 0.7; */
+  background-color: rgba(248,248,255,0.7);
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
@@ -92,7 +96,7 @@
 }
 
 .form-input{
-  background-color: ghostwhite;
+  background-color: transparent;
   border: 0;
   border-bottom: 2px solid black;
   width: 300px;
@@ -143,8 +147,10 @@
 
 .signup-form
 {
-  background-color: ghostwhite;
-  height: 75vh;
+  /* background-color: ghostwhite;
+  opacity: 0.7; */
+  background-color: rgba(248,248,255,0.7);
+  height: 70vh;
   /* width:400px; */
   border-radius: 10px;
   margin: 20px;
@@ -186,4 +192,75 @@ a {
   z-index: 10;
   width: 60px;
   height: 60px;
+}
+
+.venue-details{
+  margin: 20px
+}
+
+.venue-details-content{
+  margin-top: 10px;
+}
+
+.reviews-section{
+  margin:20px;
+  background-color: ghostwhite;
+  opacity: 0.7;
+  border-radius: 20px;
+  width:820px;
+}
+
+.review-div{
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.venue-details-photo{
+  /* background-color: ghostwhite; */
+  /* opacity: 1; */
+  background-color: rgba(248,248,255,0.7);
+  border-radius: 10px;
+  width:340px;
+  height: 240px;
+  margin: 20px;
+}
+
+.venue-photo{
+  height:200px;
+  width: 300px;
+  margin:20px;
+  
+}
+
+.venue-details-background{
+  background-image: url(/babies-feet-2.jpg);
+  height: 85vh;
+  background-size: cover;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.venue-details{
+  background-color: ghostwhite;
+  opacity: 0.7;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
+  
+}
+
+.reviews-header{
+  display: flex;
+}
+
+.reviews-section-title{
+  margin: 10px;
+}
+
+.add-review{
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 300px;
 }

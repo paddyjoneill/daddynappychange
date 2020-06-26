@@ -14,8 +14,10 @@ const ReviewsList = ({reviews, history}) => {
 
     return(
         <div>
+            <div className="reviews-header">
             <h2 className="reviews-section-title">Reviews</h2>
-            <h2 className="add-review" onClick={() => history.push('/addreview')}>Add Review</h2>
+            <h3 className="add-review" onClick={() => history.push('/addreview')}>Add Review</h3>
+            </div>
             <Reviews />
         </div>
         
