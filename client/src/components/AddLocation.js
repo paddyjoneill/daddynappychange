@@ -50,6 +50,9 @@ export default function AddLocation({setPlaces, setLastSelectedPlace, places, hi
   return (
     <div>
         <NavBar history={history}></NavBar>
+        <div className="add-location-background">
+          <br></br>
+          <div className="add-location-form">
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -84,6 +87,8 @@ export default function AddLocation({setPlaces, setLastSelectedPlace, places, hi
           </div>
         )}
       </PlacesAutocomplete>
+      </div>
+      </div>
     </div>
   );
 }

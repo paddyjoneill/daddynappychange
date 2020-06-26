@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import NavBar from './NavBar';
+import ReviewsList from './ReviewsList';
 import ReviewService from '../services/ReviewService';
 
 const VenueDetails = ({ history, lastSelectedPlace }) => {
@@ -32,15 +33,15 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
         }
     }
 
-    const Reviews = () => {
-        if (reviews !== null){
-            return reviews.map((review, index) => {
-                return <div><h3>{review.title}</h3><p>{review.text}</p></div>
-            })
-        } else {
-            return null
-        }
-    } 
+    // const Reviews = () => {
+    //     if (reviews !== null){
+    //         return reviews.map((review, index) => {
+    //             return <div><h3>{review.title}</h3><p>{review.text}</p></div>
+    //         })
+    //     } else {
+    //         return null
+    //     }
+    // } 
     
 
 
@@ -51,10 +52,8 @@ return(
             <h2>Venue Details</h2>
             <Details></Details>
             <br></br><br></br>
-            <h2 onClick={() => history.push('/addreview')}>Add Review</h2>
-            <br></br><br></br>
         </div>
-        <Reviews />
+        <ReviewsList reviews={reviews} history={history} />
     </div>
 )
 

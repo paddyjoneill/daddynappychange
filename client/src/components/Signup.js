@@ -29,29 +29,40 @@ const Signup = ({history}) => {
 return(
     <div>
     <NavBar history={history}></NavBar>
-    <div>
+    <div className="signup-background">
+        <br></br>
+        <div className="signup-form">
         <h2>Sign Up</h2>
-            <label for="username">Username:</label>
+            {/* <label for="username">Username:</label> */}
             <input type="text" id="username" name="username" 
+            className="form-input"
+            placeholder="username"
             onChange={ event => setUsername(event.target.value)}>
             </input>
-            <br></br>
-            <label for="email">email:</label>
+            {/* <br></br> */}
+            {/* <label for="email">email:</label> */}
             <input type="text" id="email" name="email"
+            className="form-input"
+            placeholder="email"
             onChange={event => setEmail(event.target.value)}           
             ></input>
-            <br></br>
-            <label for="password">Password:</label>
+            {/* <br></br> */}
+            {/* <label for="password">Password:</label> */}
             <input type="password" id="password" name="password"
+            className="form-input"
+            placeholder="password"
             onChange={event => setPassword(event.target.value)}
             ></input>
-            <br></br>
-            <label for="confirmpassword">Confirm Password:</label>
+            {/* <br></br> */}
+            {/* <label for="confirmpassword">Confirm Password:</label> */}
             <input type="password" id="confirmpassword" name="confirmpassword"
+            className="form-input"
+            placeholder="confirm password"
             onChange={event => setConfPassword(event.target.value)}            
             ></input>
-            <br></br>
-            <button onClick={handleSignup}>Sign Up</button>
+            {/* <br></br> */}
+            <button className="login-button"onClick={handleSignup}>Sign Up</button>
+    </div>
     </div>
     </div>
 )

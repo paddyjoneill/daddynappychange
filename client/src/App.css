@@ -1,5 +1,5 @@
 * {
-  font-family: 'Chelsea Market', cursive;
+  font-family: 'Montserrat', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -26,6 +26,142 @@
 
 .blacktextlink {
   color: black;
+}
+
+.add-location-background
+{
+  background-image: url("/babies-feet.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 85vh;
+}
+
+.add-location-form
+{
+  margin: 20px;
+  margin-top: 4px;
+  padding:20px;
+  height: 75vh;
+  /* width: 400px; */
+  border-radius: 10px;
+  background-color: ghostwhite;
+
+}
+
+@media screen and (max-width: 450px){
+  .add-location-form{
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width:451px){
+  .add-location-form{
+    width: 400px;
+  }
+}
+
+
+.login-background
+{
+  background-image: url("/crib.jpg");
+  height: 85vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.login-form{
+  height: 75vh;
+  /* width: 400px; */
+  background-color: ghostwhite;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  margin-top: 4px;
+}
+
+@media screen and (max-width: 450px){
+  .login-form{
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width:451px){
+  .login-form{
+    width: 400px;
+  }
+}
+
+.form-input{
+  background-color: ghostwhite;
+  border: 0;
+  border-bottom: 2px solid black;
+  width: 300px;
+  margin-top: 20px;
+  font-size: 16px;
+  
+}
+
+/* .login-password-input{
+  background-color: ghostwhite;
+  border: 0;
+  border-bottom: 2px solid black;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+} */
+
+.login-button{
+  text-align: center;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: #ADD8E6;
+  border-radius: 5px;
+  border: none;
+}
+
+.register-button{
+  text-align: center;
+  width: 300px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: #ADD8E6;
+  border-radius: 5px;
+  border: none;
+}
+
+.signup-background
+{
+  height: 85vh;
+  background-image: url("/teddies.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.signup-form
+{
+  background-color: ghostwhite;
+  height: 75vh;
+  /* width:400px; */
+  border-radius: 10px;
+  margin: 20px;
+  margin-top: 4px;
+  padding: 20px;
+}
+
+@media screen and (max-width: 450px){
+  .signup-form{
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width:451px){
+  .signup-form{
+    width: 400px;
+  }
 }
 
 ul {

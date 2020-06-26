@@ -24,23 +24,32 @@ const Login = ({ history, setJwt }) => {
 return(
     <div>
     <NavBar history={history}></NavBar>
-    <div>
-        <h2>Login Page</h2>
+    <div className="login-background">
+        <br></br>
+        <div className="login-form">
+            <h2>Login</h2>
         
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" 
-            onChange={ event => setUsername(event.target.value)}>
-            </input>
-            <br></br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"
-            onChange={event => setPassword(event.target.value)}
-            ></input>
-            <br></br>
-            <button onClick={handleLogin}>Login</button>
-    </div>
-    <div>
-        <h3 onClick={() => history.push("/signup")}>Not Registered? Sign up!</h3>
+                {/* <label for="username">Username:</label> */}
+                <input type="text" id="username" name="username" 
+                className="form-input"
+                placeholder="username"
+                onChange={ event => setUsername(event.target.value)}>
+                </input>
+                <br></br>
+                {/* <label for="password">Password:</label> */}
+                <input type="password" id="password" name="password"
+                className="form-input"
+                placeholder="password"
+                onChange={event => setPassword(event.target.value)}
+                ></input>
+                <br></br>
+                <button className="login-button" onClick={handleLogin}>Login</button>
+            <div>
+                <button className="register-button" onClick={() => history.push("/signup")}>Not Registered? Sign up!</button>
+            </div>
+        </div>
+    
+  
     </div>
     </div>
 )
