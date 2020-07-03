@@ -127,6 +127,29 @@
   border: none;
 }
 
+.add-review-form 
+{
+  background-color: rgba(248,248,255,0.7);
+  height: 70vh;
+  width:400px;
+  border-radius: 10px;
+  margin: 20px;
+  margin-top: 4px;
+  padding: 20px;
+}
+
+.submit-review-button{
+  text-align: center;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: #ADD8E6;
+  border-radius: 5px;
+  border: none;
+}
+
 .register-button{
   text-align: center;
   width: 300px;
@@ -137,6 +160,13 @@
   border: none;
 }
 
+.add-review-background
+{
+  height: 85vh;
+  background-image: url("/kiss.jpg");
+  background-size: cover;
+  background-position: center;
+}
 .signup-background
 {
   height: 85vh;

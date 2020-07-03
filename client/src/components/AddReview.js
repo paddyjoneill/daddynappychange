@@ -21,18 +21,27 @@ const AddReview = ({history, lastSelectedPlace}) => {
 return(
     <div>
         <NavBar history={history} />
-        <div>
-            <h2>Submit Review Form here</h2>
+        <div className="add-review-background">
             <br></br>
-            <p>Title:</p>
-            <input type="text" onChange={(event) => setTitle(event.target.value)}></input>
+        <div className="add-review-form">
+            <h2>Submit Review</h2>
+            <input type="text" 
+            onChange={(event) => setTitle(event.target.value)}
+            className="form-input"
+            placeholder="Review Title"
+            ></input>
             <br></br>
+            <textarea 
+            onChange={(event) => setText(event.target.value)}
+            placeholder="Enter Review Details"
+            className="form-input"
+            ></textarea>
             <br></br>
-            <p>Enter Review Below:</p>
-            <textarea onChange={(event) => setText(event.target.value)}></textarea>
-            <br></br>
-            <br></br>
-            <button onClick={handleSubmit}>Submit Review</button>
+            <button 
+            onClick={handleSubmit}
+            className="submit-review-button"
+            >Submit Review</button>
+        </div>
         </div>
     </div>
 )
