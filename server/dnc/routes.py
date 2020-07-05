@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response, abort
+from flask import Flask, jsonify, request, make_response, abort, send_from_directory
 
 from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
@@ -7,8 +7,8 @@ from dnc import app
 from dnc import db
 
 from dnc import models
-
 from dnc import mail
+from dnc import photo
 
 @app.route('/')
 def index():
@@ -51,6 +51,13 @@ def get_review(id):
     if review == None:
         abort(404)
     return review 
+
+# photo ref route
+@app.route('/api/photo/<string:place_id>')
+def get_photo_url(place_id):
+    # return jsonify(photo.get_photo(place_id))
+    photo.get_photo(place_id)
+    return send_from_directory('../static', '01.jpg')
 
 # user signup and authentication routes
 

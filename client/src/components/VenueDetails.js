@@ -17,7 +17,7 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
             setReviews(res)
             console.log(res)
         } )
-        
+
     }, [lastSelectedPlace])
 
     const Details = () => {
@@ -34,6 +34,14 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
             return null
         }
     }
+
+    const Photo = () => {
+        if(lastSelectedPlace !== null){
+            const baseURL = 'https://daddynappychange.herokuapp.com/api/photo/'
+            const url = baseURL + lastSelectedPlace.placeId
+            return <img className="venue-photo" src={url} alt="" />
+        }
+    }
     
 return(
     <div>
@@ -45,7 +53,8 @@ return(
             <Details></Details>
         </div>
         <div className="venue-details-photo">
-            <img className="venue-photo" src="/edinburgh-castle.jpg" alt="castle"/>
+            {/* <img className="venue-photo" src="/edinburgh-castle.jpg" alt="castle"/> */}
+            <Photo></Photo>
         </div>
         <div className="reviews-section">
             <ReviewsList reviews={reviews} history={history} />
