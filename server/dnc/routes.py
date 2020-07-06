@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response, abort, send_from_directory
+from flask import Flask, jsonify, request, make_response, abort, send_from_directory, redirect
 
 from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
@@ -56,8 +56,8 @@ def get_review(id):
 @app.route('/api/photo/<string:place_id>')
 def get_photo_url(place_id):
     # return jsonify(photo.get_photo(place_id))
-    photo.get_photo(place_id)
-    return send_from_directory('../static', '01.jpg')
+    url = photo.get_photo(place_id)
+    return redirect(url['photo_url'])
 
 # user signup and authentication routes
 
