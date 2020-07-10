@@ -1,5 +1,6 @@
-const baseURL = 'https://daddynappychange.herokuapp.com/api/venues'
-// const baseURL = 'http://ec2-35-179-93-3.eu-west-2.compute.amazonaws.com/api/venues'
+// const baseURL = 'https://daddynappychange.herokuapp.com/api/venues'
+const baseURL = 'http://daddynappychange.co.uk:5000/api/venues'
+// const baseURL = 'http://daddynappychange:5000/api/venues'
 
 export default {
     getVenues() {
