@@ -30,3 +30,5 @@ I have been writing blogs to document my progress and thought process:
 
 [Asynchronous Task Management with Celery](https://medium.com/@patrickjamesoneill/asynchronous-task-management-with-celery-c328d7bc99cb)
 
+[Dockerising and deploying a Flask app](https://medium.com/@patrickjamesoneill/dockerising-and-deploying-a-flask-app-fd075ddd26e8)
+
