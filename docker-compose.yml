@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+    redis:
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+        networks:
+            - daddy-net
+        # deploy:
+        #     restart_policy:
+        #         condition: on-failure
+    
+    backend:
+        image: paddyjoneill/daddynappychange
+        ports: 
+            - "5000:5000"
+        networks:
+            - daddy-net
+        # deploy:
+        #     restart_policy:
+        #         condition: on-failure
+        depends_on: 
+            - redis
+        command: gunicorn -b :5000 --access-logfile - dnc:app
+
+    worker:
+        image: paddyjoneill/daddynappychange
+        command: celery -A dnc.celery worker --uid=1
+        networks:
+            - daddy-net
+        # deploy:
+        #     restart_policy:
+        #         condition: on-failure
+        depends_on: 
+            - redis
+
+    frontend:
+        image: paddyjoneill/daddynappychangefrontend
+        ports:
+            - "80:80"
+
+networks:
+    daddy-net:
