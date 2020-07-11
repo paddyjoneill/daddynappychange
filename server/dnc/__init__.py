@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
+import socket
+
 from celery import Celery
 
 from dotenv import load_dotenv
@@ -17,7 +19,11 @@ CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # database settings
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://" + os.environ['DB_USER'] + ":" + os.environ['DB_PASSWORD'] + "@" + os.environ['DB_URL'] + ":3306/innodb"
+db_address = os.environ['DB_URL']
+ip_address = socket.gethostbyname('db')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://" + os.environ['DB_USER'] + ":" + os.environ['DB_PASSWORD'] + "@" + ip_address + ":3306/innodb"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://" + os.environ['DB_USER'] + ":" + os.environ['DB_PASSWORD'] + "@" + os.environ['DB_URL'] + ":3306/innodb"
 # app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['CORS_HEADERS'] = ['Content-Type', 'Authorization']

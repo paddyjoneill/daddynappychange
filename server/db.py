@@ -21,7 +21,7 @@ def get_all_venues():
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * FROM `venues`"
-            cursor.execute(sql)
+               cursor.execute(sql)
             result = cursor.fetchall()
             return result
         connection.commit()
