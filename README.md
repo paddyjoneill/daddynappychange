@@ -8,7 +8,7 @@ This app is to help with the problem that when Dad's are out with their babies a
 
 ### Tech Stack
 #### Front-end: React 
-#### Back-end: Python, Flask, MySQL
+#### Back-end: Python (Flask, Celery), MySQL, Redis
 
 The main purpose of this app is for me to consilidate my programming skills and learn some new ones. I will be using React for the front-end which I have used before and I'm familiar with. This should also allow me later on to use the code and create a mobile app using React Native.
 
