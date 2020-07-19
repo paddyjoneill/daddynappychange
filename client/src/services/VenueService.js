@@ -1,5 +1,5 @@
 // const baseURL = 'https://daddynappychange.herokuapp.com/api/venues'
-const baseURL = 'http://daddynappychange.co.uk:5000/api/venues'
+const baseURL = 'https://daddynappychange.co.uk/api/venues'
 // const baseURL = 'http://daddynappychange:5000/api/venues'
 
 export default {

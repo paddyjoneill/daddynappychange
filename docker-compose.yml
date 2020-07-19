@@ -38,9 +38,9 @@ services:
     frontend:
         image: paddyjoneill/daddynappychangefrontend
         restart: always
-        ports:
+        # ports:
             # - "5001:80"
-            - "80:80"
+            # - "80:80"
         networks:
             - daddy-net
         depends_on: 
@@ -64,18 +64,19 @@ services:
         volumes:
             - /var/lib/mysql:/var/lib/mysql
 
-    # reverse_proxy:
-    #     image: caddy
-    #     volumes:
-    #         - ./Caddyfile:/etc/caddy/Caddyfile
-    #         - ./.caddy:/root/.caddy
-    #     ports:
-    #         - "80:80"
-    #         - "443:443"
-    #     networks:
-    #         - daddy-net
-    #     depends_on: 
-    #         - frontend
+    reverse_proxy:
+        image: caddy
+        volumes:
+            - ./Caddyfile:/etc/caddy/Caddyfile
+            - ./caddy_data:/data
+            # - ./caddy_config:/config
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - daddy-net
+        depends_on: 
+            - frontend
             
 
 volumes:

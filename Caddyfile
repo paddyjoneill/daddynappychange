@@ -1,7 +1,8 @@
 www.daddynappychange.co.uk, daddynappychange.co.uk
 {
-reverse_proxy /api/* backend:5000
-reverse_proxy not /api/* frontend:80
+reverse_proxy * http://frontend:80
+reverse_proxy /api/* http://backend:5000
+file_server
 }
 
 
