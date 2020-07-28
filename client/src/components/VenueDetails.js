@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
 
+import { useLocation } from 'react-router-dom';
+
 import NavBar from './NavBar';
 import ReviewsList from './ReviewsList';
 import ReviewService from '../services/ReviewService';
+import VenueService from '../services/VenueService';
 
 
 
 const VenueDetails = ({ history, lastSelectedPlace }) => {
 
     const [ reviews, setReviews ] = useState(null)
-    // const [selectedReview, setSelectedReview] = useState(null)
+    const [ venue, setVenue ] = useState(null)
+    const searchString = useLocation()['search'].toString();
+    let venueId = new URLSearchParams(searchString).get('venue_id');
+
 
     useEffect(() => {
-        ReviewService.getReviewsByVenue(lastSelectedPlace.placeId)
+        VenueService.getVenue(venueId)
         .then( res => {
-            setReviews(res)
-            console.log(res)
-        } )
-
-    }, [lastSelectedPlace])
+            setVenue(res);
+            ReviewService.getReviewsByVenue(res.placeId)
+            .then( res => setReviews(res) )  
+        })
+    }, [venueId])
 
     const Details = () => {
-        if (lastSelectedPlace !== null) {
+        if (venue !== null) {
             return(
                 <div className="venue-details-content">
-                    <p>{lastSelectedPlace.name}</p>
-                    <p>Latitude: {lastSelectedPlace.lat}</p>
-                    <p>Longitude: {lastSelectedPlace.lng}</p>
+                    <p>{venue.name}</p>
+                    <p>Latitude: {venue.lat}</p>
+                    <p>Longitude: {venue.lng}</p>
                     {/* <p>google place id: {lastSelectedPlace.placeId}</p> */}
                 </div>
             )
@@ -36,10 +42,12 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
     }
 
     const Photo = () => {
-        if(lastSelectedPlace !== null){
-            const baseURL = 'https://daddynappychange.herokuapp.com/api/photo/'
-            const url = baseURL + lastSelectedPlace.placeId
+        if(venue !== null){
+            const baseURL = 'https://daddynappychange.co.uk/api/photo/'
+            const url = baseURL + venue.placeId
             return <img className="venue-photo" src={url} alt="" />
+        } else {
+            return null
         }
     }
     

@@ -5,7 +5,7 @@ const ReviewsList = ({reviews, history}) => {
     const Reviews = () => {
         if (reviews !== null){
             return reviews.map((review, index) => {
-                return <div className="review-div"><h3 className="review-title">{review.title}</h3><p className="review-content">{review.text}</p></div>
+                return <div key={index} className="review-div"><h3 className="review-title">{review.title}</h3><p className="review-content">{review.text}</p></div>
             })
         } else {
             return null

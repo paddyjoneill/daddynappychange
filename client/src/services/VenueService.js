@@ -20,6 +20,8 @@ export default {
       },
     
     getVenue(placeId) {
+      return fetch(baseURL + "/" + placeId)
+      .then(response => response.json())
       
     }
 
