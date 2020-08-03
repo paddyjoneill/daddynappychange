@@ -52,7 +52,7 @@ services:
         restart: always
         environment:
             MYSQL_DATABASE: 'innodb'
-            MYSQL_USER: 'user'
+            MYSQL_USER: 'user1'
             MYSQL_PASSWORD: 'password'
             MYSQL_ROOT_PASSWORD: 'password'
         networks: 
