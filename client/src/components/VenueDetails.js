@@ -34,8 +34,18 @@ const VenueDetails = ({ history, lastSelectedPlace }) => {
                     <p>Latitude: {venue.lat}</p>
                     <p>Longitude: {venue.lng}</p>
                     {/* <p>google place id: {lastSelectedPlace.placeId}</p> */}
+                    <GoogleMapsLink></GoogleMapsLink>
                 </div>
             )
+        } else {
+            return null
+        }
+    }
+
+    const GoogleMapsLink = () => {
+        if(venue !== null){
+            let googleMapUrl = "https://www.google.com/maps/search/?api=1&query=address&query_place_id=" + venue.placeId
+            return <h3><a className="google-map-link" href={googleMapUrl}>Open in Google Maps</a></h3>
         } else {
             return null
         }
@@ -59,6 +69,7 @@ return(
         <div className="venue-details">
             <h2>Venue Details</h2>
             <Details></Details>
+            
         </div>
         <div className="venue-details-photo">
             {/* <img className="venue-photo" src="/edinburgh-castle.jpg" alt="castle"/> */}
