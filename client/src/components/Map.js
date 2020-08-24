@@ -44,6 +44,14 @@ const Map = ({places, setLastSelectedPlace, history}) => {
     if (loadError) return "Error loading maps"
     if (!isLoaded ) return "Loading Maps"
 
+    const GoogleMapLink = () => {
+        if(selectedPlace.placeId !== null){
+            let googleMapUrl = "https://www.google.com/maps/search/?api=1&query=address&query_place_id=" + selectedPlace.placeId
+            return <p><a className="google-map-link" href={googleMapUrl}>Open in Google Maps</a></p>
+        } else {
+            return null
+        }
+    }
     
 
 
@@ -75,6 +83,7 @@ const Map = ({places, setLastSelectedPlace, history}) => {
                         <h3>{selectedPlace.name}</h3>
                         {/* <p>{selectedPlace.placeId}</p> */}
                         <p onClick={() => history.push("/venue?venue_id=" + selectedPlace.placeId )}>Click for more info!</p>
+                        <GoogleMapLink></GoogleMapLink>
                     </div>
                 </InfoWindow>) : null}
             </GoogleMap>
