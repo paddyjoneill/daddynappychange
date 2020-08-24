@@ -1,0 +1,26 @@
+version: "3.8"
+
+    db:
+        image: mysql:8.0
+        restart: always
+        environment:
+            - MYSQL_DATABASE
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+            - MYSQL_ROOT_PASSWORD
+        networks: 
+            - daddy-net
+        ports:
+            - '3306:3306'
+        expose:
+            - '3306'
+        volumes:
+            - /var/lib/mysql:/var/lib/mysql
+
+
+
+volumes:
+    my-db:
+
+networks:
+    daddy-net:
